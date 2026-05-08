@@ -29,7 +29,7 @@ app.post('/api/extract-skills', async (req, res) => {
     try {
         console.log("Extracting skills for:", req.body.text);
         
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
         const prompt = `Extract professional trade skills from this text. Return ONLY a JSON array of short skill strings (max 6 words each). Examples: ["AC Repair","Pipe Fitting"]. Text: "${req.body.text}"`;
         
         const result = await model.generateContent(prompt);
@@ -50,7 +50,7 @@ app.post('/api/analyze-issue', upload.single('image'), async (req, res) => {
     try {
         console.log("Analyzing customer issue...");
         
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
         const prompt = `You are an AI repair issue classifier for Mender. Analyze the issue: "${req.body.issueText}". Return ONLY valid JSON: {"category": "Device or service type", "urgency": "Low, Medium, or High", "summary": "Short explanation"}`;
         
         const imageParts = [];
